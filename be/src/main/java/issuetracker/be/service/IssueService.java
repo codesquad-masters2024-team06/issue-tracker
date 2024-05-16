@@ -56,7 +56,7 @@ public class IssueService {
     for (Issue i : issues) {
       Label label = labelRepository.findById(i.getLabel()).orElseThrow();
       MilestoneWithIssueCountDto milestone = milestoneRepository.findWithIssueCountBy(
-          i.getMilestoneId()).orElseThrow();
+          i.getMilestone_id()).orElseThrow();
       User reporter = userRepository.findById(i.getReporter()).orElseThrow();
 
       IssueShowDto issueShowDto = new IssueShowDto(i, label, milestone, reporter);
