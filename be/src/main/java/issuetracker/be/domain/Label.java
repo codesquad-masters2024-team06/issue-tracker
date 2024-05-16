@@ -11,7 +11,7 @@ public class Label {
 
   @Id
   private String name;
-  private String backgroundColor;
-  private String textColor;
+  private String background_color;
+  private String text_color;
   private String description;
 }

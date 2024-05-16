@@ -13,8 +13,7 @@ public class MilestoneWithIssueCountDto {
   private String name;
   private String description;
   private Date end_date;
-  @JsonProperty("is_open")
-  private boolean is_open;
+  private Boolean is_open;
   private int open_issue;
   private int close_issue;
 }

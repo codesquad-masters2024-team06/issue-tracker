@@ -13,7 +13,7 @@ public class User {
 
   @Id
   private String name;
-  private String imagePath;
+  private String image_path;
 }
 
 
