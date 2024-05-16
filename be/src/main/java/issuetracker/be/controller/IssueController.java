@@ -22,6 +22,12 @@ public class IssueController {
   @PostMapping("/issue")
   public ResponseEntity<?> saveIssue(@RequestBody IssueSaveRequestDto issueSaveRequestDto) {
     issueService.save(issueSaveRequestDto);
-    return ResponseEntity.status(HttpStatus.CREATED).build();
+  }
+
+  @ResponseStatus(HttpStatus.OK)
+  @GetMapping("/issue")
+  public IssueGetResponseDto findAllIssue() {
+    IssueGetResponseDto result = issueService.getAllIssue();
+    return result;
   }
 }
