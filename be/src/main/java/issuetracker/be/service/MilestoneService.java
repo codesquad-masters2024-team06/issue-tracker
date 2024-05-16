@@ -1,6 +1,6 @@
 package issuetracker.be.service;
 
-import issuetracker.be.dto.MilestoneWithIssueCountDto;
+import issuetracker.be.dto.MilestoneWithIssueCountResponse;
 import issuetracker.be.repository.MilestoneRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class MilestoneService {
    *
    * @return 마일스톤 조회 DTO List
    */
-  public List<MilestoneWithIssueCountDto> getAllMilestone() {
+  public List<MilestoneWithIssueCountResponse> getAllMilestone() {
     return milestoneRepository.findAllWithIssueCount();
   }
 }

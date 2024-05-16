@@ -11,16 +11,16 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class IssueShowDto {
+public class IssueShowResponse {
 
   private Long id;
   private String title;
   private String create_At;
   private User reporter;
   private Label label;
-  private MilestoneWithIssueCountDto milestone;
+  private MilestoneWithIssueCountResponse milestone;
 
-  public IssueShowDto(Issue issue, Label label, MilestoneWithIssueCountDto milestone, User reporter) {
+  public IssueShowResponse(Issue issue, Label label, MilestoneWithIssueCountResponse milestone, User reporter) {
     this.id = issue.getId();
     this.title = issue.getTitle();
     this.create_At = TimeLapseCalculator.between(issue.getCreated_at(), LocalDateTime.now());

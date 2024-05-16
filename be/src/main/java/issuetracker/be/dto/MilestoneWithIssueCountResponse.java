@@ -1,13 +1,12 @@
 package issuetracker.be.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class MilestoneWithIssueCountDto {
+public class MilestoneWithIssueCountResponse {
 
   private long id;
   private String name;

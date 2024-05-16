@@ -10,7 +10,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class IssueSaveRequestDto {
+public class IssueSaveRequest {
 
   private String reporter;
   private List<String> assignee;

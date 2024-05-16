@@ -3,10 +3,10 @@ package issuetracker.be.service;
 import issuetracker.be.domain.Issue;
 import issuetracker.be.domain.Label;
 import issuetracker.be.domain.User;
-import issuetracker.be.dto.IssueGetResponseDto;
-import issuetracker.be.dto.IssueSaveRequestDto;
-import issuetracker.be.dto.IssueShowDto;
-import issuetracker.be.dto.MilestoneWithIssueCountDto;
+import issuetracker.be.dto.IssueListResponse;
+import issuetracker.be.dto.IssueSaveRequest;
+import issuetracker.be.dto.IssueShowResponse;
+import issuetracker.be.dto.MilestoneWithIssueCountResponse;
 import issuetracker.be.repository.IssueRepository;
 
 import java.time.LocalDateTime;
@@ -38,29 +38,29 @@ public class IssueService {
     this.userRepository = userRepository;
   }
 
-  public void save(IssueSaveRequestDto issueSaveRequestDto) {
-    Issue issue = issueSaveRequestDto.toEntity(LocalDateTime.now());
+  public void save(IssueSaveRequest issueSaveRequest) {
+    Issue issue = issueSaveRequest.toEntity(LocalDateTime.now());
     Issue save = issueRepository.save(issue);
     log.debug("저장된 이슈 : {}", save);
   }
 
-  public IssueGetResponseDto getAllIssue() {
-    List<IssueShowDto> closeIssues = generateIssueShowDto(issueRepository.findByIsOpenIsFalse());
-    List<IssueShowDto> openIssues = generateIssueShowDto(issueRepository.findByIsOpenIsTrue());
+  public IssueListResponse getAllIssue() {
+    List<IssueShowResponse> closeIssues = generateIssueShowDto(issueRepository.findByIsOpenIsFalse());
+    List<IssueShowResponse> openIssues = generateIssueShowDto(issueRepository.findByIsOpenIsTrue());
 
-    return new IssueGetResponseDto(closeIssues, openIssues);
+    return new IssueListResponse(closeIssues, openIssues);
   }
 
-  private List<IssueShowDto> generateIssueShowDto(List<Issue> issues) {
-    List<IssueShowDto> result = new ArrayList<>();
+  private List<IssueShowResponse> generateIssueShowDto(List<Issue> issues) {
+    List<IssueShowResponse> result = new ArrayList<>();
     for (Issue i : issues) {
       Label label = labelRepository.findById(i.getLabel()).orElseThrow();
-      MilestoneWithIssueCountDto milestone = milestoneRepository.findWithIssueCountBy(
+      MilestoneWithIssueCountResponse milestone = milestoneRepository.findWithIssueCountBy(
           i.getMilestone_id()).orElseThrow();
       User reporter = userRepository.findById(i.getReporter()).orElseThrow();
 
-      IssueShowDto issueShowDto = new IssueShowDto(i, label, milestone, reporter);
-      result.add(issueShowDto);
+      IssueShowResponse issueShowResponse = new IssueShowResponse(i, label, milestone, reporter);
+      result.add(issueShowResponse);
     }
     return result;
   }

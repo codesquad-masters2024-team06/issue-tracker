@@ -1,7 +1,7 @@
 package issuetracker.be.controller;
 
-import issuetracker.be.dto.IssueGetResponseDto;
-import issuetracker.be.dto.IssueSaveRequestDto;
+import issuetracker.be.dto.IssueListResponse;
+import issuetracker.be.dto.IssueSaveRequest;
 import issuetracker.be.service.IssueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,14 +23,14 @@ public class IssueController {
 
   @ResponseStatus(HttpStatus.CREATED)
   @PostMapping("/issue")
-  public void saveIssue(@RequestBody IssueSaveRequestDto issueSaveRequestDto) {
-    issueService.save(issueSaveRequestDto);
+  public void saveIssue(@RequestBody IssueSaveRequest issueSaveRequest) {
+    issueService.save(issueSaveRequest);
   }
 
   @ResponseStatus(HttpStatus.OK)
   @GetMapping("/issue")
-  public IssueGetResponseDto findAllIssue() {
-    IssueGetResponseDto result = issueService.getAllIssue();
+  public IssueListResponse findAllIssue() {
+    IssueListResponse result = issueService.getAllIssue();
     return result;
   }
 }
