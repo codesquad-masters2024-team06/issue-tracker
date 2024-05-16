@@ -3,6 +3,7 @@ package issuetracker.be.dto;
 import issuetracker.be.domain.Issue;
 import issuetracker.be.domain.Label;
 import issuetracker.be.domain.User;
+import issuetracker.be.utils.TimeLapseCalculator;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,7 +15,7 @@ public class IssueShowDto {
 
   private Long id;
   private String title;
-  private LocalDateTime createAt;
+  private String createAt;
   private User reporter;
   private Label label;
   private MilestoneWithIssueCountDto milestone;
@@ -23,7 +24,7 @@ public class IssueShowDto {
       User reporter) {
     this.id = issue.getId();
     this.title = issue.getTitle();
-    this.createAt = issue.getCreatedAt();
+    this.createAt = TimeLapseCalculator.between(issue.getCreatedAt(), LocalDateTime.now());
     this.label = label;
     this.reporter = reporter;
     this.milestone = milestone;
