@@ -11,6 +11,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class IssueSaveRequestDto {
+
   private String reporter;
   private List<String> assignee;
   private String label;
@@ -22,6 +23,6 @@ public class IssueSaveRequestDto {
     if (assignee == null) {
       return new Issue(title, reporter, milestone_id, now, label);
     }
-    return new Issue(title,reporter, milestone_id, now, label, assignee);
+    return new Issue(title, reporter, milestone_id, now, label, assignee);
   }
 }
